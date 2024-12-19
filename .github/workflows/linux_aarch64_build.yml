@@ -86,6 +86,10 @@ jobs:
           git apply --ignore-space-change --reject --ignore-whitespace .github/patches/dev/*.patch
         fi
 
+        # Chrome Format
+        echo "ac_add_options --enable-chrome-format=flat" >> mozconfig
+        # Enable Flat Package
+
         ./mach --no-interactive bootstrap --application-choice browser
       env:
         GHA_debug: ${{ inputs.debug }}

@@ -153,6 +153,7 @@ jobs:
           echo 'ac_add_options --enable-profile-use=cross' >> mozconfig
           echo 'ac_add_options --with-pgo-profile-path=$(echo ~)/artifacts/merged.profdata' >> mozconfig
           echo 'ac_add_options --with-pgo-jarlog=$(echo ~)/artifacts/en-US.log' >> mozconfig
+          echo 'export MOZ_LTO=cross' >> mozconfig
         fi
         # PGO END
 
@@ -189,7 +190,7 @@ jobs:
         path: obj-x86_64-pc-windows-msvc/dist/noraneko-*.zip
 
     - name: Publish Package Mozilla Artifact🎁
-      if: inputs.package-moz-artifact
+      if: inputs.package-moz-artifact && inputs.profile-generate-mode == 'false'
       uses: actions/upload-artifact@v4
       with:
         name: noraneko-win-amd64-moz-artifact

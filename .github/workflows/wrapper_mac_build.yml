@@ -12,9 +12,6 @@ on:
       debug:
         type: boolean
         required: true
-      package-full:
-        type: boolean
-        required: true
 
 run-name: Mac x64 build
 jobs:
@@ -35,8 +32,4 @@ jobs:
     uses: ./.github/workflows/mac_build.yml
     with:
       debug: ${{inputs.debug}}
-      package-full: ${{inputs.package-full}}
       MOZ_BUILD_DATE: ${{needs.get-buildid.outputs.buildids}}
-    secrets:
-      MACOS_CROSS_TOOLS_KEY: ${{secrets.MACOS_CROSS_TOOLS_KEY}}
-
