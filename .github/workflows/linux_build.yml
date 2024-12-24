@@ -80,6 +80,7 @@ jobs:
         echo "mk_add_options 'export CCACHE_CPP2=yes'" >> mozconfig
         echo "ac_add_options --with-ccache=/home/runner/.mozbuild/sccache/sccache" >> mozconfig
         echo "mk_add_options 'export SCCACHE_GHA_ENABLED=on'" >> mozconfig
+        echo "ac_add_options MOZ_PGO=1" >> mozconfig
 
         if [[ $GHA_debug == 'true' ]]; then
           echo "ac_add_options --enable-debug" >> mozconfig
@@ -96,6 +97,9 @@ jobs:
 
     - name: Build 🔨
       run: |
+        Xvfb :2 -screen 0 1024x768x24 &
+        export DISPLAY=:2
+
         ./mach build
         ./mach package
         rm -rf ~/.cargo
