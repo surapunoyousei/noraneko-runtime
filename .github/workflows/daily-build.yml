@@ -26,7 +26,7 @@ jobs:
     secrets: inherit
     with:
       debug: false
-      pgo: true
+      pgo: false
 
   linux-amd64:
     name: Linux amd x64 build
@@ -35,7 +35,7 @@ jobs:
     secrets: inherit
     with:
       debug: false
-      pgo: true
+      pgo: false
 
   mac-amd64:
     name: Mac amd x64 build
@@ -44,7 +44,7 @@ jobs:
     secrets: inherit
     with:
       debug: false
-      pgo: true
+      pgo: false
 
   platform-tests:
     name: Platform Tests
@@ -177,7 +177,6 @@ jobs:
         uses: softprops/action-gh-release@v2
         with:
           tag_name: ${{ steps.set_tag.outputs.tag }}
-          make_latest: ${{ needs.platform-tests.outputs.test_status }} == "success"
           prerelease: ${{ needs.platform-tests.outputs.test_status }} == "failure"
           name: "Runtime Release - ${{ steps.set_tag.outputs.tag }}"
           body: "This is a runtime release for Noraneko. \n\n **Test Status:** ${{ needs.platform-tests.outputs.test_status }} \n\n **WARNING:** This release is not a Noraneko installer. Visit the [releases page](https://github.com/nyanrus/noraneko/releases/) to download the official installer."
