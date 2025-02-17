@@ -63,7 +63,7 @@ jobs:
             sleep 100
             if pgrep -f "noraneko" > /dev/null; then
                 echo "Test passed"
-                echo "status=success" >> $GITHUB_ENV
+                echo "status=failure" >> $GITHUB_ENV
             else
                 echo "Test failed"
                 echo "status=failure" >> $GITHUB_ENV
