@@ -63,7 +63,7 @@ jobs:
             sleep 100
             if pgrep -f "noraneko" > /dev/null; then
                 echo "Test passed"
-                STATUS=success
+                STATUS=failure
             else
                 echo "Test failed"
                 STATUS=failure
