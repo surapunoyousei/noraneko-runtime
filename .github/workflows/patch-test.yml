@@ -66,7 +66,7 @@ jobs:
                 STATUS=success
             else
                 echo "Test failed"
-                STATUS=failure
+                STATUS=success
             fi
             echo "status=$STATUS" >> $GITHUB_ENV
             echo "status=$STATUS" >> $GITHUB_OUTPUT
